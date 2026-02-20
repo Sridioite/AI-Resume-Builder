@@ -1,6 +1,8 @@
+import { useTemplate } from '../context/TemplateContext'
 import './ResumePreview.css'
 
 const ResumePreview = ({ data }) => {
+  const { selectedTemplate } = useTemplate()
   // Check if resume has any content
   const hasContent = data.personalInfo.name || 
                      data.summary || 
@@ -11,7 +13,7 @@ const ResumePreview = ({ data }) => {
 
   return (
     <div className="resume-preview">
-      <div className="resume-content">
+      <div className={`resume-content template-${selectedTemplate}`}>
         {/* Header */}
         <div className="resume-header">
           <h1 className="resume-name">{data.personalInfo.name || 'Your Name'}</h1>

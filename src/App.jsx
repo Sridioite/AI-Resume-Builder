@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ProgressProvider } from './context/ProgressContext'
 import { ResumeProvider } from './context/ResumeContext'
+import { TemplateProvider } from './context/TemplateContext'
 import Problem from './pages/rb/Problem'
 import Market from './pages/rb/Market'
 import Architecture from './pages/rb/Architecture'
@@ -19,7 +20,8 @@ function App() {
   return (
     <ProgressProvider>
       <ResumeProvider>
-        <BrowserRouter>
+        <TemplateProvider>
+          <BrowserRouter>
           <Routes>
             {/* AI Resume Builder App Routes */}
             <Route path="/" element={<Home />} />
@@ -40,6 +42,7 @@ function App() {
             <Route path="/rb/proof" element={<RBProof />} />
           </Routes>
         </BrowserRouter>
+        </TemplateProvider>
       </ResumeProvider>
     </ProgressProvider>
   )

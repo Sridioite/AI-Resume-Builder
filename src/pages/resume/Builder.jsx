@@ -2,6 +2,9 @@ import { useResume } from '../../context/ResumeContext'
 import Navigation from '../../components/Navigation'
 import ResumePreview from '../../components/ResumePreview'
 import ATSScore from '../../components/ATSScore'
+import ImprovementPanel from '../../components/ImprovementPanel'
+import TemplateSwitcher from '../../components/TemplateSwitcher'
+import BulletInput from '../../components/BulletInput'
 import './Builder.css'
 
 const Builder = () => {
@@ -155,9 +158,9 @@ const Builder = () => {
                   value={exp.duration}
                   onChange={(e) => updateExperience(index, 'duration', e.target.value)}
                 />
-                <textarea
+                <BulletInput
                   placeholder="Description of your role and achievements..."
-                  rows="3"
+                  rows={3}
                   value={exp.description}
                   onChange={(e) => updateExperience(index, 'description', e.target.value)}
                 />
@@ -185,9 +188,9 @@ const Builder = () => {
                   value={proj.name}
                   onChange={(e) => updateProject(index, 'name', e.target.value)}
                 />
-                <textarea
+                <BulletInput
                   placeholder="Project description..."
-                  rows="2"
+                  rows={2}
                   value={proj.description}
                   onChange={(e) => updateProject(index, 'description', e.target.value)}
                 />
@@ -234,11 +237,13 @@ const Builder = () => {
         <div className="builder-preview">
           <div className="preview-header">
             <h3>Live Preview</h3>
+            <TemplateSwitcher />
           </div>
           
           {/* ATS Score */}
           <div className="preview-score">
             <ATSScore resumeData={resumeData} />
+            <ImprovementPanel resumeData={resumeData} />
           </div>
           
           <ResumePreview data={resumeData} />
