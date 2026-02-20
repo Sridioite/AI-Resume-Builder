@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage Debugger - AI Resume Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F7F6F3;
+      padding: 2rem;
+      color: #2c2c2c;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      font-family: Georgia, serif;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+    }
+    
+    .status {
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+    
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+    }
+    
+    .status.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+    }
+    
+    .status.warning {
+      background: #fff3e0;
+      color: #e65100;
+      border: 1px solid #ffe0b2;
+    }
+    
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid #e0e0e0;
+    }
+    
+    button {
+      background: #8B0000;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+      transition: all 0.2s;
+    }
+    
+    button:hover {
+      background: #a00000;
+      transform: translateY(-1px);
+    }
+    
+    button.secondary {
+      background: #2e7d32;
+    }
+    
+    button.secondary:hover {
+      background: #388e3c;
+    }
+    
+    .section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #fafaf8;
+      border-radius: 6px;
+      border: 1px solid #e5e5e0;
+    }
+    
+    h2 {
+      font-family: Georgia, serif;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    h3 {
+      color: #1a1a1a;
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.125rem;
+    }
+    
+    ul {
+      margin-left: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .code {
+      background: #2c2c2c;
+      color: #f5f5f5;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 localStorage Debugger</h1>
+    <p>This tool helps diagnose why Skills and Projects sections aren't rendering.</p>
+    
+    <div id="status"></div>
+    
+    <div class="section">
+      <h2>Quick Actions</h2>
+      <button onclick="clearAndReload()">🗑️ Clear localStorage & Reload</button>
+      <button onclick="checkData()" class="secondary">🔄 Refresh Check</button>
+      <button onclick="window.open('http://localhost:5174/builder', '_blank')" class="secondary">🚀 Open Builder</button>
+    </div>
+    
+    <div class="section">
+      <h2>Current localStorage Data</h2>
+      <div id="dataDisplay"></div>
+    </div>
+    
+    <div class="section">
+      <h2>Diagnostic Results</h2>
+      <div id="diagnostics"></div>
+    </div>
+    
+    <div class="section">
+      <h2>Manual Fix Instructions</h2>
+      <h3>Option 1: Use the button above</h3>
+      <p>Click "Clear localStorage & Reload" button above.</p>
+      
+      <h3>Option 2: Browser Console</h3>
+      <ol>
+        <li>Press <span class="code">F12</span> to open DevTools</li>
+        <li>Go to <span class="code">Console</span> tab</li>
+        <li>Type: <span class="code">localStorage.clear()</span> and press Enter</li>
+        <li>Refresh the page</li>
+      </ol>
+      
+      <h3>Option 3: Application Tab</h3>
+      <ol>
+        <li>Press <span class="code">F12</span> to open DevTools</li>
+        <li>Go to <span class="code">Application</span> tab</li>
+        <li>Expand <span class="code">Local Storage</span> in left sidebar</li>
+        <li>Click on your localhost URL</li>
+        <li>Find <span class="code">resumeBuilderData</span></li>
+        <li>Right-click and select <span class="code">Delete</span></li>
+        <li>Refresh the page</li>
+      </ol>
+    </div>
+  </div>
+  
+  <script>
+    function clearAndReload() {
+      if (confirm('This will clear all your resume data. Continue?')) {
+        localStorage.clear();
+        alert('localStorage cleared! The page will now reload.');
+        window.location.reload();
+      }
+    }
+    
+    function checkData() {
+      const statusDiv = document.getElementById('status');
+      const dataDiv = document.getElementById('dataDisplay');
+      const diagDiv = document.getElementById('diagnostics');
+      
+      const data = localStorage.getItem('resumeBuilderData');
+      
+      if (!data) {
+        statusDiv.innerHTML = '<div class="status success">✅ No localStorage data found. This is good! The app will use the default structure.</div>';
+        dataDiv.innerHTML = '<p><em>No data stored yet.</em></p>';
+        diagDiv.innerHTML = '<div class="status success">✅ Ready to use! Go to <a href="http://localhost:5174/builder" target="_blank">Builder Page</a></div>';
+        return;
+      }
+      
+      try {
+        const parsed = JSON.parse(data);
+        
+        // Check for issues
+        const issues = [];
+        const warnings = [];
+        
+        // Check skills structure
+        if (typeof parsed.skills === 'string') {
+          issues.push('❌ Skills is a string (old format). Should be an object with technical/soft/tools arrays.');
+        } else if (parsed.skills && typeof parsed.skills === 'object') {
+          if (!parsed.skills.technical || !parsed.skills.soft || !parsed.skills.tools) {
+            warnings.push('⚠️ Skills object exists but missing categories (technical/soft/tools).');
+          } else {
+            warnings.push('✅ Skills structure looks correct!');
+          }
+        } else {
+          issues.push('❌ Skills field is missing or invalid.');
+        }
+        
+        // Check projects structure
+        if (parsed.projects && Array.isArray(parsed.projects)) {
+          if (parsed.projects.length > 0) {
+            const firstProject = parsed.projects[0];
+            if (firstProject.name && !firstProject.title) {
+              issues.push('❌ Projects use old field "name" instead of "title".');
+            }
+            if (firstProject.tech && typeof firstProject.tech === 'string') {
+              issues.push('❌ Projects use old field "tech" as string instead of "techStack" array.');
+            }
+            if (!firstProject.techStack) {
+              issues.push('❌ Projects missing "techStack" field.');
+            }
+            if (firstProject.title && Array.isArray(firstProject.techStack)) {
+              warnings.push('✅ Projects structure looks correct!');
+            }
+          }
+        }
+        
+        // Display status
+        if (issues.length > 0) {
+          statusDiv.innerHTML = `
+            <div class="status error">
+              <strong>🚨 Incompatible Data Structure Detected</strong>
+              <p>Your localStorage has old data that's incompatible with the new structure.</p>
+            </div>
+          `;
+        } else {
+          statusDiv.innerHTML = '<div class="status success">✅ Data structure looks compatible!</div>';
+        }
+        
+        // Display data
+        dataDiv.innerHTML = `<pre>${JSON.stringify(parsed, null, 2)}</pre>`;
+        
+        // Display diagnostics
+        let diagHTML = '<h3>Issues Found:</h3><ul>';
+        if (issues.length === 0) {
+          diagHTML += '<li style="color: #2e7d32;">✅ No critical issues found!</li>';
+        } else {
+          issues.forEach(issue => {
+            diagHTML += `<li>${issue}</li>`;
+          });
+        }
+        diagHTML += '</ul>';
+        
+        if (warnings.length > 0) {
+          diagHTML += '<h3>Status:</h3><ul>';
+          warnings.forEach(warning => {
+            diagHTML += `<li>${warning}</li>`;
+          });
+          diagHTML += '</ul>';
+        }
+        
+        if (issues.length > 0) {
+          diagHTML += `
+            <div class="status error" style="margin-top: 1rem;">
+              <strong>Recommended Action:</strong><br>
+              Click the "Clear localStorage & Reload" button above to fix this issue.
+            </div>
+          `;
+        }
+        
+        diagDiv.innerHTML = diagHTML;
+        
+      } catch (e) {
+        statusDiv.innerHTML = `<div class="status error">❌ Error parsing localStorage data: ${e.message}</div>`;
+        dataDiv.innerHTML = `<pre>${data}</pre>`;
+        diagDiv.innerHTML = '<div class="status error">The data is corrupted. Clear localStorage to fix.</div>';
+      }
+    }
+    
+    // Run check on load
+    checkData();
+  </script>
+</body>
+</html>

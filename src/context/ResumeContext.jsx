@@ -21,7 +21,11 @@ const initialResumeData = {
   education: [],
   experience: [],
   projects: [],
-  skills: '',
+  skills: {
+    technical: [],
+    soft: [],
+    tools: []
+  },
   links: {
     github: '',
     linkedin: ''
@@ -31,7 +35,39 @@ const initialResumeData = {
 export const ResumeProvider = ({ children }) => {
   const [resumeData, setResumeData] = useState(() => {
     const saved = localStorage.getItem('resumeBuilderData')
-    return saved ? JSON.parse(saved) : initialResumeData
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        // Migrate old skills format to new format
+        if (typeof parsed.skills === 'string') {
+          const skillsArray = parsed.skills.split(',').map(s => s.trim()).filter(s => s)
+          parsed.skills = {
+            technical: skillsArray.slice(0, Math.ceil(skillsArray.length / 2)),
+            soft: [],
+            tools: skillsArray.slice(Math.ceil(skillsArray.length / 2))
+          }
+        }
+        // Migrate old projects format to new format
+        if (parsed.projects && parsed.projects.length > 0) {
+          parsed.projects = parsed.projects.map(proj => ({
+            title: proj.name || proj.title || '',
+            description: proj.description || '',
+            techStack: proj.tech ? proj.tech.split(',').map(t => t.trim()).filter(t => t) : (proj.techStack || []),
+            liveUrl: proj.liveUrl || '',
+            githubUrl: proj.githubUrl || ''
+          }))
+        }
+        // Ensure skills object exists
+        if (!parsed.skills || typeof parsed.skills !== 'object') {
+          parsed.skills = { technical: [], soft: [], tools: [] }
+        }
+        return parsed
+      } catch (e) {
+        console.error('Error parsing saved data:', e)
+        return initialResumeData
+      }
+    }
+    return initialResumeData
   })
 
   // Auto-save to localStorage
@@ -53,8 +89,25 @@ export const ResumeProvider = ({ children }) => {
     setResumeData(prev => ({ ...prev, summary: value }))
   }
 
-  const updateSkills = (value) => {
-    setResumeData(prev => ({ ...prev, skills: value }))
+  const updateSkills = (category, tags) => {
+    setResumeData(prev => ({
+      ...prev,
+      skills: {
+        ...prev.skills,
+        [category]: tags
+      }
+    }))
+  }
+
+  const suggestSkills = () => {
+    setResumeData(prev => ({
+      ...prev,
+      skills: {
+        technical: [...new Set([...prev.skills.technical, 'TypeScript', 'React', 'Node.js', 'PostgreSQL', 'GraphQL'])],
+        soft: [...new Set([...prev.skills.soft, 'Team Leadership', 'Problem Solving'])],
+        tools: [...new Set([...prev.skills.tools, 'Git', 'Docker', 'AWS'])]
+      }
+    }))
   }
 
   const updateLinks = (field, value) => {
@@ -116,7 +169,13 @@ export const ResumeProvider = ({ children }) => {
   const addProject = () => {
     setResumeData(prev => ({
       ...prev,
-      projects: [...prev.projects, { name: '', description: '', tech: '' }]
+      projects: [...prev.projects, { 
+        title: '', 
+        description: '', 
+        techStack: [],
+        liveUrl: '',
+        githubUrl: ''
+      }]
     }))
   }
 
@@ -133,6 +192,15 @@ export const ResumeProvider = ({ children }) => {
     setResumeData(prev => ({
       ...prev,
       projects: prev.projects.filter((_, i) => i !== index)
+    }))
+  }
+
+  const updateProjectTechStack = (index, tags) => {
+    setResumeData(prev => ({
+      ...prev,
+      projects: prev.projects.map((proj, i) => 
+        i === index ? { ...proj, techStack: tags } : proj
+      )
     }))
   }
 
@@ -169,17 +237,25 @@ export const ResumeProvider = ({ children }) => {
       ],
       projects: [
         {
-          name: 'AI Resume Builder',
+          title: 'AI Resume Builder',
           description: 'Built a web app that helps users create ATS-optimized resumes with AI assistance',
-          tech: 'React, Node.js, OpenAI API'
+          techStack: ['React', 'Node.js', 'OpenAI API'],
+          liveUrl: 'https://resume-builder.example.com',
+          githubUrl: 'https://github.com/user/resume-builder'
         },
         {
-          name: 'Task Management System',
+          title: 'Task Management System',
           description: 'Developed a collaborative task management platform with real-time updates',
-          tech: 'Vue.js, Firebase, WebSockets'
+          techStack: ['Vue.js', 'Firebase', 'WebSockets'],
+          liveUrl: '',
+          githubUrl: 'https://github.com/user/task-manager'
         }
       ],
-      skills: 'JavaScript, TypeScript, React, Node.js, Python, SQL, MongoDB, AWS, Docker, Git',
+      skills: {
+        technical: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'SQL'],
+        soft: ['Team Leadership', 'Problem Solving', 'Communication'],
+        tools: ['Git', 'Docker', 'AWS', 'MongoDB']
+      },
       links: {
         github: 'github.com/alexjohnson',
         linkedin: 'linkedin.com/in/alexjohnson'
@@ -203,6 +279,8 @@ export const ResumeProvider = ({ children }) => {
       addProject,
       updateProject,
       removeProject,
+      updateProjectTechStack,
+      suggestSkills,
       loadSampleData
     }}>
       {children}

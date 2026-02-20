@@ -29,11 +29,12 @@ export const calculateATSScore = (resumeData) => {
   }
 
   // 4. Skills list has ≥ 8 items = +10
-  const skillsArray = resumeData.skills
-    .split(',')
-    .map(s => s.trim())
-    .filter(s => s.length > 0)
-  if (skillsArray.length >= 8) {
+  const allSkills = [
+    ...resumeData.skills.technical,
+    ...resumeData.skills.soft,
+    ...resumeData.skills.tools
+  ]
+  if (allSkills.length >= 8) {
     score += 10
   } else {
     suggestions.push('Add more skills (target 8+).')

@@ -1,0 +1,50 @@
+import { useState } from 'react'
+import './TagInput.css'
+
+const TagInput = ({ tags, onTagsChange, placeholder = "Type and press Enter" }) => {
+  const [inputValue, setInputValue] = useState('')
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && inputValue.trim()) {
+      e.preventDefault()
+      if (!tags.includes(inputValue.trim())) {
+        onTagsChange([...tags, inputValue.trim()])
+      }
+      setInputValue('')
+    }
+  }
+
+  const removeTag = (tagToRemove) => {
+    onTagsChange(tags.filter(tag => tag !== tagToRemove))
+  }
+
+  return (
+    <div className="tag-input-container">
+      <div className="tags-list">
+        {tags.map((tag, index) => (
+          <span key={index} className="tag-chip">
+            {tag}
+            <button
+              type="button"
+              className="tag-remove"
+              onClick={() => removeTag(tag)}
+              aria-label={`Remove ${tag}`}
+            >
+              ×
+            </button>
+          </span>
+        ))}
+      </div>
+      <input
+        type="text"
+        className="tag-input"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder={tags.length === 0 ? placeholder : ''}
+      />
+    </div>
+  )
+}
+
+export default TagInput

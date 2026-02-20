@@ -64,10 +64,30 @@ const ResumePreview = ({ data }) => {
           <div className="resume-section">
             <h2 className="resume-section-title">Projects</h2>
             {data.projects.map((proj, index) => (
-              <div key={index} className="resume-entry">
-                <h3 className="entry-title">{proj.name || 'Project Name'}</h3>
+              <div key={index} className="resume-entry project-card">
+                <h3 className="entry-title">{proj.title || 'Project'}</h3>
                 {proj.description && <p className="entry-description">{proj.description}</p>}
-                {proj.tech && <p className="entry-tech">Technologies: {proj.tech}</p>}
+                {proj.techStack && proj.techStack.length > 0 && (
+                  <div className="tech-stack">
+                    {proj.techStack.map((tech, i) => (
+                      <span key={i} className="tech-pill">{tech}</span>
+                    ))}
+                  </div>
+                )}
+                {(proj.liveUrl || proj.githubUrl) && (
+                  <div className="project-links">
+                    {proj.liveUrl && (
+                      <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+                        🔗 Live Demo
+                      </a>
+                    )}
+                    {proj.githubUrl && (
+                      <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+                        💻 GitHub
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -95,10 +115,42 @@ const ResumePreview = ({ data }) => {
         )}
 
         {/* Skills */}
-        {data.skills && (
+        {(data.skills.technical.length > 0 || data.skills.soft.length > 0 || data.skills.tools.length > 0) && (
           <div className="resume-section">
             <h2 className="resume-section-title">Skills</h2>
-            <p className="resume-skills">{data.skills}</p>
+            
+            {data.skills.technical.length > 0 && (
+              <div className="skill-group">
+                <h4 className="skill-group-title">Technical Skills</h4>
+                <div className="skills-pills">
+                  {data.skills.technical.map((skill, i) => (
+                    <span key={i} className="skill-pill">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {data.skills.soft.length > 0 && (
+              <div className="skill-group">
+                <h4 className="skill-group-title">Soft Skills</h4>
+                <div className="skills-pills">
+                  {data.skills.soft.map((skill, i) => (
+                    <span key={i} className="skill-pill">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {data.skills.tools.length > 0 && (
+              <div className="skill-group">
+                <h4 className="skill-group-title">Tools & Technologies</h4>
+                <div className="skills-pills">
+                  {data.skills.tools.map((skill, i) => (
+                    <span key={i} className="skill-pill">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

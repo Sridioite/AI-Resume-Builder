@@ -52,9 +52,13 @@ export const generatePlainText = (resumeData) => {
     text += 'PROJECTS\n'
     text += '--------\n'
     resumeData.projects.forEach(proj => {
-      if (proj.name) text += `${proj.name}\n`
+      if (proj.title) text += `${proj.title}\n`
       if (proj.description) text += `${proj.description}\n`
-      if (proj.tech) text += `Technologies: ${proj.tech}\n`
+      if (proj.techStack && proj.techStack.length > 0) {
+        text += `Technologies: ${proj.techStack.join(', ')}\n`
+      }
+      if (proj.liveUrl) text += `Live: ${proj.liveUrl}\n`
+      if (proj.githubUrl) text += `GitHub: ${proj.githubUrl}\n`
       text += '\n'
     })
   }
@@ -73,10 +77,26 @@ export const generatePlainText = (resumeData) => {
   }
 
   // Skills
-  if (resumeData.skills) {
+  const allSkills = [
+    ...resumeData.skills.technical,
+    ...resumeData.skills.soft,
+    ...resumeData.skills.tools
+  ]
+  
+  if (allSkills.length > 0) {
     text += 'SKILLS\n'
     text += '------\n'
-    text += resumeData.skills + '\n\n'
+    
+    if (resumeData.skills.technical.length > 0) {
+      text += `Technical: ${resumeData.skills.technical.join(', ')}\n`
+    }
+    if (resumeData.skills.soft.length > 0) {
+      text += `Soft Skills: ${resumeData.skills.soft.join(', ')}\n`
+    }
+    if (resumeData.skills.tools.length > 0) {
+      text += `Tools: ${resumeData.skills.tools.join(', ')}\n`
+    }
+    text += '\n'
   }
 
   return text.trim()

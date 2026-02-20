@@ -5,6 +5,8 @@ import ATSScore from '../../components/ATSScore'
 import ImprovementPanel from '../../components/ImprovementPanel'
 import TemplateSwitcher from '../../components/TemplateSwitcher'
 import BulletInput from '../../components/BulletInput'
+import SkillsSection from '../../components/SkillsSection'
+import ProjectsSection from '../../components/ProjectsSection'
 import './Builder.css'
 
 const Builder = () => {
@@ -23,6 +25,8 @@ const Builder = () => {
     addProject,
     updateProject,
     removeProject,
+    updateProjectTechStack,
+    suggestSkills,
     loadSampleData
   } = useResume()
 
@@ -169,51 +173,20 @@ const Builder = () => {
           </section>
 
           {/* Projects */}
-          <section className="form-section">
-            <div className="section-header">
-              <h2>Projects</h2>
-              <button className="btn-add" onClick={addProject}>+ Add</button>
-            </div>
-            {resumeData.projects.map((proj, index) => (
-              <div key={index} className="entry-card">
-                <button 
-                  className="btn-remove"
-                  onClick={() => removeProject(index)}
-                >
-                  ×
-                </button>
-                <input
-                  type="text"
-                  placeholder="Project Name"
-                  value={proj.name}
-                  onChange={(e) => updateProject(index, 'name', e.target.value)}
-                />
-                <BulletInput
-                  placeholder="Project description..."
-                  rows={2}
-                  value={proj.description}
-                  onChange={(e) => updateProject(index, 'description', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Technologies used"
-                  value={proj.tech}
-                  onChange={(e) => updateProject(index, 'tech', e.target.value)}
-                />
-              </div>
-            ))}
-          </section>
+          <ProjectsSection
+            projects={resumeData.projects}
+            addProject={addProject}
+            updateProject={updateProject}
+            updateProjectTechStack={updateProjectTechStack}
+            removeProject={removeProject}
+          />
 
           {/* Skills */}
-          <section className="form-section">
-            <h2>Skills</h2>
-            <input
-              type="text"
-              placeholder="Enter skills separated by commas (e.g., JavaScript, React, Node.js)"
-              value={resumeData.skills}
-              onChange={(e) => updateSkills(e.target.value)}
-            />
-          </section>
+          <SkillsSection
+            skills={resumeData.skills}
+            updateSkills={updateSkills}
+            suggestSkills={suggestSkills}
+          />
 
           {/* Links */}
           <section className="form-section">

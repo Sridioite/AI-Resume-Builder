@@ -1,0 +1,39 @@
+.skill-category {
+  margin-bottom: 1.5rem;
+}
+
+.skill-category:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.btn-suggest {
+  padding: 0.5rem 1rem;
+  background: #2e7d32;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.btn-suggest:hover:not(:disabled) {
+  background: #388e3c;
+  transform: translateY(-1px);
+}
+
+.btn-suggest:disabled {
+  background: #d5d5d0;
+  color: #9a9a95;
+  cursor: not-allowed;
+  transform: none;
+}

@@ -40,11 +40,10 @@ const ImprovementPanel = ({ resumeData }) => {
     }
 
     // Check skills
-    const skillsArray = resumeData.skills
-      .split(',')
-      .map(s => s.trim())
-      .filter(s => s.length > 0)
-    if (skillsArray.length < 8) {
+    const totalSkills = (resumeData.skills?.technical?.length || 0) +
+                        (resumeData.skills?.soft?.length || 0) +
+                        (resumeData.skills?.tools?.length || 0)
+    if (totalSkills < 8) {
       suggestions.push({
         title: 'Expand Skills Section',
         description: 'List at least 8 relevant skills to improve your ATS compatibility.'

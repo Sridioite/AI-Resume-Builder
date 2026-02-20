@@ -1,0 +1,125 @@
+.project-entry {
+  background: #fafaf8;
+  border: 1px solid #e5e5e0;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.project-entry:last-child {
+  margin-bottom: 0;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e0;
+  transition: background 0.2s;
+}
+
+.project-header:hover {
+  background: #F7F6F3;
+}
+
+.project-title-display {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.project-header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-expand {
+  background: none;
+  border: none;
+  color: #8B0000;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: transform 0.2s;
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content input,
+.project-content textarea {
+  width: 100%;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #d5d5d0;
+  border-radius: 6px;
+  color: #2c2c2c;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.project-content input:focus,
+.project-content textarea:focus {
+  outline: none;
+  border-color: #8B0000;
+  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+.project-content textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.textarea-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.char-counter {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  color: #9a9a95;
+  background: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.btn-remove-project {
+  width: 100%;
+  padding: 0.75rem;
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+  font-size: 0.9375rem;
+}
+
+.btn-remove-project:hover {
+  background: #c62828;
+  color: #ffffff;
+}
