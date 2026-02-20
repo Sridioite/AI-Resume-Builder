@@ -9,9 +9,9 @@
   padding: 2.5rem;
 }
 
-.preview-template-switcher {
+.preview-controls {
   background: #ffffff;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -21,4 +21,99 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 8px 8px;
   overflow: hidden;
+}
+
+/* Print Styles */
+@media print {
+  /* Hide everything except resume content */
+  .preview-page {
+    background: #ffffff;
+  }
+
+  .preview-container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .no-print,
+  .preview-controls {
+    display: none !important;
+  }
+
+  .preview-content {
+    box-shadow: none;
+    border-radius: 0;
+    background: #ffffff;
+  }
+
+  /* Resume content print styling */
+  .resume-preview {
+    padding: 0.5in;
+    background: #ffffff;
+  }
+
+  .resume-content {
+    background: #ffffff;
+    color: #000000;
+    max-width: 100%;
+  }
+
+  /* Remove all colored accents */
+  .resume-content * {
+    color: #000000 !important;
+    background: #ffffff !important;
+    border-color: #000000 !important;
+  }
+
+  /* Clean margins and spacing */
+  .resume-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #000000;
+  }
+
+  .resume-section {
+    margin-bottom: 1.5rem;
+    page-break-inside: avoid;
+  }
+
+  .resume-section-title {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #000000;
+  }
+
+  .resume-entry {
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+
+  /* Avoid splitting entries across pages */
+  .entry-header,
+  .entry-description {
+    page-break-inside: avoid;
+  }
+
+  /* Consistent spacing */
+  .resume-name {
+    margin-bottom: 0.5rem;
+  }
+
+  .resume-contact,
+  .resume-links {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Remove any shadows or effects */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  @page {
+    margin: 0.5in;
+    size: letter;
+  }
 }

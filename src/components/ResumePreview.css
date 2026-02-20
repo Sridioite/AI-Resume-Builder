@@ -1,3 +1,4 @@
+/* Resume content print styling */
 .resume-preview {
   padding: 2.5rem;
   background: #ffffff;
@@ -10,6 +11,19 @@
   color: #000000;
   font-size: 0.9375rem;
   line-height: 1.5;
+}
+
+/* Print-specific adjustments */
+@media print {
+  .resume-preview {
+    padding: 0;
+  }
+
+  .resume-content {
+    max-width: 100%;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
 }
 
 /* Header */
@@ -233,4 +247,58 @@
 
 .resume-content.template-minimal .entry-subtitle {
   font-size: 0.875rem;
+}
+
+
+/* Enhanced Print Styles for Resume */
+@media print {
+  /* Ensure sections don't break awkwardly */
+  .resume-section {
+    page-break-inside: avoid;
+  }
+
+  /* Keep entry headers with their content */
+  .resume-entry {
+    page-break-inside: avoid;
+  }
+
+  /* Prevent orphaned headers */
+  .resume-section-title {
+    page-break-after: avoid;
+  }
+
+  .entry-header {
+    page-break-after: avoid;
+  }
+
+  /* Ensure proper spacing in print */
+  .resume-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .resume-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .resume-entry {
+    margin-bottom: 1rem;
+  }
+
+  /* Clean, professional print appearance */
+  .resume-name {
+    font-size: 24pt;
+  }
+
+  .resume-section-title {
+    font-size: 12pt;
+  }
+
+  .entry-title {
+    font-size: 11pt;
+  }
+
+  /* Remove any background colors in print */
+  * {
+    background: #ffffff !important;
+  }
 }

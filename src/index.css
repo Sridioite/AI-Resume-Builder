@@ -84,3 +84,28 @@ code {
   color: #8B0000;
   font-weight: bold;
 }
+
+
+/* Global Print Styles */
+@media print {
+  /* Hide navigation and UI elements */
+  nav,
+  .top-nav,
+  .nav-links,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset body for print */
+  body {
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Ensure clean page breaks */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

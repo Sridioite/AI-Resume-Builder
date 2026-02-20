@@ -1,0 +1,132 @@
+.export-buttons-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.export-warning-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.warning-content {
+  background: #ffffff;
+  border: 2px solid #ffe0b2;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.warning-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.warning-message {
+  color: #e65100;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.warning-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-warning-cancel,
+.btn-warning-proceed {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-warning-cancel {
+  background: #ffffff;
+  color: #4a4a4a;
+  border: 2px solid #d5d5d0;
+}
+
+.btn-warning-cancel:hover {
+  background: #F7F6F3;
+  border-color: #8B0000;
+  color: #8B0000;
+}
+
+.btn-warning-proceed {
+  background: #8B0000;
+  color: #ffffff;
+}
+
+.btn-warning-proceed:hover {
+  background: #a00000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.2);
+}
+
+.export-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-export {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-print {
+  background: #8B0000;
+  color: #ffffff;
+}
+
+.btn-print:hover {
+  background: #a00000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.2);
+}
+
+.btn-copy {
+  background: #ffffff;
+  color: #8B0000;
+  border: 2px solid #8B0000;
+}
+
+.btn-copy:hover {
+  background: rgba(139, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .export-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-export {
+    width: 100%;
+  }
+}
