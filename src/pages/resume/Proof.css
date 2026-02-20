@@ -1,0 +1,59 @@
+.proof-page-resume {
+  min-height: 100vh;
+  background: #F7F6F3;
+}
+
+.proof-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+.proof-content-resume {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.proof-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 3rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.proof-subtitle {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.proof-placeholder {
+  background: #ffffff;
+  border: 2px dashed #d5d5d0;
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.proof-placeholder h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.75rem;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.proof-placeholder p {
+  font-size: 1.125rem;
+  color: #6a6a6a;
+  line-height: 1.6;
+}
