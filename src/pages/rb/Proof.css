@@ -1,0 +1,258 @@
+.proof-page {
+  min-height: 100vh;
+  background: #F7F6F3;
+  color: #2c2c2c;
+}
+
+.proof-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+.proof-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.proof-header h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.proof-header p {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+/* Steps Grid */
+.steps-grid {
+  margin-bottom: 3rem;
+}
+
+.steps-grid h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.step-card {
+  background: #ffffff;
+  border: 2px solid #e5e5e0;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: #8B0000;
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.1);
+}
+
+.step-card.complete {
+  border-color: #2e7d32;
+  background: #f1f8f4;
+}
+
+.step-card.incomplete {
+  border-color: #e5e5e0;
+}
+
+.step-number {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8B0000;
+}
+
+.step-card.complete .step-number {
+  color: #2e7d32;
+}
+
+.step-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.step-status {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.step-card.complete .step-status {
+  color: #2e7d32;
+}
+
+.step-card.incomplete .step-status {
+  color: #d5d5d0;
+}
+
+/* Project Links */
+.project-links {
+  margin-bottom: 3rem;
+}
+
+.project-links h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.links-form {
+  background: #ffffff;
+  border: 1px solid #e5e5e0;
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.625rem;
+  color: #4a4a4a;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  background: #F7F6F3;
+  border: 1px solid #d5d5d0;
+  border-radius: 6px;
+  color: #2c2c2c;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #8B0000;
+  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+/* Submission Section */
+.submission-section {
+  margin-bottom: 3rem;
+}
+
+.submission-section h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.warning-box {
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+  color: #e65100;
+  padding: 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.success-box {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+  padding: 1.25rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.btn-copy-submission {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  background: #8B0000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-copy-submission:hover:not(.disabled) {
+  background: #a00000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.2);
+}
+
+.btn-copy-submission.disabled {
+  background: #d5d5d0;
+  color: #9a9a95;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Footer */
+.proof-footer {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.btn-back {
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: #8B0000;
+  border: 1px solid #8B0000;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  background: rgba(139, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .proof-header h1 {
+    font-size: 2rem;
+  }
+}

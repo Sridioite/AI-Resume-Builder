@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F7F6F3;
+  color: #2c2c2c;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* Step Content Styles */
+.step-content {
+  color: #2c2c2c;
+}
+
+.step-content h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.step-content p {
+  font-size: 1.125rem;
+  color: #4a4a4a;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.instruction-box {
+  background: #ffffff;
+  border: 1px solid #e5e5e0;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.instruction-box h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.instruction-box p {
+  margin-bottom: 0;
+  color: #4a4a4a;
+}
+
+.instruction-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instruction-box li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+.instruction-box li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #8B0000;
+  font-weight: bold;
+}
