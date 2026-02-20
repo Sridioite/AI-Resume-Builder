@@ -1,6 +1,7 @@
 import { useResume } from '../../context/ResumeContext'
 import Navigation from '../../components/Navigation'
 import ResumePreview from '../../components/ResumePreview'
+import ATSScore from '../../components/ATSScore'
 import './Builder.css'
 
 const Builder = () => {
@@ -234,6 +235,12 @@ const Builder = () => {
           <div className="preview-header">
             <h3>Live Preview</h3>
           </div>
+          
+          {/* ATS Score */}
+          <div className="preview-score">
+            <ATSScore resumeData={resumeData} />
+          </div>
+          
           <ResumePreview data={resumeData} />
         </div>
       </div>

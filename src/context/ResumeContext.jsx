@@ -30,12 +30,13 @@ const initialResumeData = {
 
 export const ResumeProvider = ({ children }) => {
   const [resumeData, setResumeData] = useState(() => {
-    const saved = localStorage.getItem('resume_data')
+    const saved = localStorage.getItem('resumeBuilderData')
     return saved ? JSON.parse(saved) : initialResumeData
   })
 
+  // Auto-save to localStorage
   useEffect(() => {
-    localStorage.setItem('resume_data', JSON.stringify(resumeData))
+    localStorage.setItem('resumeBuilderData', JSON.stringify(resumeData))
   }, [resumeData])
 
   const updatePersonalInfo = (field, value) => {

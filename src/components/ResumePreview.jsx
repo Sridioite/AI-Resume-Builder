@@ -1,17 +1,27 @@
 import './ResumePreview.css'
 
 const ResumePreview = ({ data }) => {
+  // Check if resume has any content
+  const hasContent = data.personalInfo.name || 
+                     data.summary || 
+                     data.experience.length > 0 || 
+                     data.projects.length > 0 || 
+                     data.education.length > 0 || 
+                     data.skills
+
   return (
     <div className="resume-preview">
       <div className="resume-content">
         {/* Header */}
         <div className="resume-header">
           <h1 className="resume-name">{data.personalInfo.name || 'Your Name'}</h1>
-          <div className="resume-contact">
-            {data.personalInfo.email && <span>{data.personalInfo.email}</span>}
-            {data.personalInfo.phone && <span>{data.personalInfo.phone}</span>}
-            {data.personalInfo.location && <span>{data.personalInfo.location}</span>}
-          </div>
+          {(data.personalInfo.email || data.personalInfo.phone || data.personalInfo.location) && (
+            <div className="resume-contact">
+              {data.personalInfo.email && <span>{data.personalInfo.email}</span>}
+              {data.personalInfo.phone && <span>{data.personalInfo.phone}</span>}
+              {data.personalInfo.location && <span>{data.personalInfo.location}</span>}
+            </div>
+          )}
           {(data.links.github || data.links.linkedin) && (
             <div className="resume-links">
               {data.links.github && <span>{data.links.github}</span>}
