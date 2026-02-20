@@ -1,7 +1,7 @@
 import { useResume } from '../../context/ResumeContext'
 import Navigation from '../../components/Navigation'
 import ResumePreview from '../../components/ResumePreview'
-import TemplateSwitcher from '../../components/TemplateSwitcher'
+import TemplatePicker from '../../components/TemplatePicker'
 import ExportButtons from '../../components/ExportButtons'
 import './Preview.css'
 
@@ -14,7 +14,7 @@ const Preview = () => {
       
       <div className="preview-container">
         <div className="preview-controls no-print">
-          <TemplateSwitcher />
+          <TemplatePicker />
           <ExportButtons resumeData={resumeData} />
         </div>
         <div className="preview-content">

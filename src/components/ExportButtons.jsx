@@ -7,18 +7,38 @@ const ExportButtons = ({ resumeData }) => {
   const [showWarning, setShowWarning] = useState(false)
   const [warningMessage, setWarningMessage] = useState('')
   const [pendingAction, setPendingAction] = useState(null)
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
 
-  const handlePrint = () => {
+  const showToastNotification = (message) => {
+    setToastMessage(message)
+    setShowToast(true)
+    setTimeout(() => {
+      setShowToast(false)
+    }, 3000)
+  }
+
+  const handleDownloadPDF = () => {
     const validation = validateResumeForExport(resumeData)
     
     if (!validation.isValid) {
       // Show warning and store the action to execute later
       setWarningMessage(validation.message)
-      setPendingAction(() => () => window.print())
+      setPendingAction(() => () => {
+        // Trigger print dialog
+        window.print()
+        // Show toast after a short delay
+        setTimeout(() => {
+          showToastNotification('PDF generation ready! Use "Save as PDF" in the print dialog.')
+        }, 500)
+      })
       setShowWarning(true)
     } else {
       // If valid, execute immediately
       window.print()
+      setTimeout(() => {
+        showToastNotification('PDF generation ready! Use "Save as PDF" in the print dialog.')
+      }, 500)
     }
   }
 
@@ -31,9 +51,9 @@ const ExportButtons = ({ resumeData }) => {
       setPendingAction(() => () => {
         const plainText = generatePlainText(resumeData)
         navigator.clipboard.writeText(plainText).then(() => {
-          alert('Resume copied to clipboard!')
+          showToastNotification('Resume copied to clipboard!')
         }).catch(() => {
-          alert('Failed to copy to clipboard. Please try again.')
+          showToastNotification('Failed to copy to clipboard.')
         })
       })
       setShowWarning(true)
@@ -41,9 +61,9 @@ const ExportButtons = ({ resumeData }) => {
       // If valid, execute immediately
       const plainText = generatePlainText(resumeData)
       navigator.clipboard.writeText(plainText).then(() => {
-        alert('Resume copied to clipboard!')
+        showToastNotification('Resume copied to clipboard!')
       }).catch(() => {
-        alert('Failed to copy to clipboard. Please try again.')
+        showToastNotification('Failed to copy to clipboard.')
       })
     }
   }
@@ -82,14 +102,25 @@ const ExportButtons = ({ resumeData }) => {
           </div>
         </div>
       )}
+
+      {showToast && (
+        <div className="export-toast">
+          <span className="toast-icon">✓</span>
+          <span className="toast-message">{toastMessage}</span>
+        </div>
+      )}
       
       <div className="export-buttons">
-        <button className="btn-export btn-print" onClick={handlePrint}>
-          🖨️ Print / Save as PDF
+        <button className="btn-export btn-download" onClick={handleDownloadPDF}>
+          📥 Download PDF
         </button>
         <button className="btn-export btn-copy" onClick={handleCopyText}>
           📋 Copy Resume as Text
         </button>
+      </div>
+
+      <div className="export-hint">
+        💡 Tip: In the print dialog, select "Save as PDF" and enable "Background graphics" for best results.
       </div>
     </div>
   )

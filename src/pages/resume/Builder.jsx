@@ -3,7 +3,7 @@ import Navigation from '../../components/Navigation'
 import ResumePreview from '../../components/ResumePreview'
 import ATSScore from '../../components/ATSScore'
 import ImprovementPanel from '../../components/ImprovementPanel'
-import TemplateSwitcher from '../../components/TemplateSwitcher'
+import TemplatePicker from '../../components/TemplatePicker'
 import BulletInput from '../../components/BulletInput'
 import SkillsSection from '../../components/SkillsSection'
 import ProjectsSection from '../../components/ProjectsSection'
@@ -210,8 +210,10 @@ const Builder = () => {
         <div className="builder-preview">
           <div className="preview-header">
             <h3>Live Preview</h3>
-            <TemplateSwitcher />
           </div>
+          
+          {/* Template & Color Picker */}
+          <TemplatePicker />
           
           {/* ATS Score */}
           <div className="preview-score">

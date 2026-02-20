@@ -25,6 +25,13 @@
 
 /* Print Styles */
 @media print {
+  /* Force color printing */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   /* Hide everything except resume content */
   .preview-page {
     background: #ffffff;
@@ -49,66 +56,30 @@
 
   /* Resume content print styling */
   .resume-preview {
-    padding: 0.5in;
+    padding: 0;
     background: #ffffff;
   }
 
   .resume-content {
     background: #ffffff;
-    color: #000000;
     max-width: 100%;
   }
 
-  /* Remove all colored accents */
-  .resume-content * {
-    color: #000000 !important;
-    background: #ffffff !important;
-    border-color: #000000 !important;
-  }
-
-  /* Clean margins and spacing */
-  .resume-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #000000;
-  }
-
+  /* Avoid splitting entries across pages */
   .resume-section {
-    margin-bottom: 1.5rem;
     page-break-inside: avoid;
-  }
-
-  .resume-section-title {
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid #000000;
+    break-inside: avoid;
   }
 
   .resume-entry {
-    margin-bottom: 1rem;
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  /* Avoid splitting entries across pages */
   .entry-header,
   .entry-description {
     page-break-inside: avoid;
-  }
-
-  /* Consistent spacing */
-  .resume-name {
-    margin-bottom: 0.5rem;
-  }
-
-  .resume-contact,
-  .resume-links {
-    margin-bottom: 0.25rem;
-  }
-
-  /* Remove any shadows or effects */
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
+    break-inside: avoid;
   }
 
   /* Ensure proper page breaks */
