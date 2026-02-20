@@ -11,6 +11,12 @@ const Navigation = () => {
       <div className="nav-brand">AI Resume Builder</div>
       <div className="nav-links">
         <Link 
+          to="/" 
+          className={`nav-link ${isActive('/') ? 'active' : ''}`}
+        >
+          Home
+        </Link>
+        <Link 
           to="/builder" 
           className={`nav-link ${isActive('/builder') ? 'active' : ''}`}
         >

@@ -2,17 +2,47 @@ import { useNavigate } from 'react-router-dom'
 import { useProgress } from '../../context/ProgressContext'
 import PremiumLayout from '../../components/PremiumLayout'
 import BuildPanel from '../../components/BuildPanel'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Ship = () => {
   const navigate = useNavigate()
-  const { canAccessStep } = useProgress()
+  const { canAccessStep, isStepComplete } = useProgress()
+  const [showAccessDenied, setShowAccessDenied] = useState(false)
 
   useEffect(() => {
     if (!canAccessStep(8)) {
-      navigate('/rb/01-problem')
+      setShowAccessDenied(true)
+      const timer = setTimeout(() => {
+        navigate('/rb/07-test')
+      }, 2000)
+      return () => clearTimeout(timer)
     }
   }, [canAccessStep, navigate])
+
+  if (showAccessDenied) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        backgroundColor: '#F7F6F3',
+        fontFamily: 'Georgia, serif',
+        color: '#8B0000',
+        textAlign: 'center',
+        padding: '2rem'
+      }}>
+        <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Step 8 Locked</h1>
+        <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+          Complete Step 7 (Test) first by uploading an artifact.
+        </p>
+        <p style={{ fontSize: '1rem', color: '#666' }}>
+          Redirecting to Step 7...
+        </p>
+      </div>
+    )
+  }
 
   const promptText = `Prepare the AI Resume Builder for deployment.
 
