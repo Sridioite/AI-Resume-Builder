@@ -2,6 +2,7 @@ import { useResume } from '../../context/ResumeContext'
 import Navigation from '../../components/Navigation'
 import ResumePreview from '../../components/ResumePreview'
 import TemplatePicker from '../../components/TemplatePicker'
+import ATSScore from '../../components/ATSScore'
 import ExportButtons from '../../components/ExportButtons'
 import './Preview.css'
 
@@ -15,6 +16,7 @@ const Preview = () => {
       <div className="preview-container">
         <div className="preview-controls no-print">
           <TemplatePicker />
+          <ATSScore resumeData={resumeData} />
           <ExportButtons resumeData={resumeData} />
         </div>
         <div className="preview-content">
