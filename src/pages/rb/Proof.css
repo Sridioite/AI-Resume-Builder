@@ -171,7 +171,7 @@
 }
 
 .step-card:hover {
-  border-color: #8B0000;
+  border-color: #5e35b1;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -223,7 +223,7 @@
 
 .checklist-item:hover {
   background: #ffffff;
-  border-color: #8B0000;
+  border-color: #5e35b1;
 }
 
 .checklist-item input[type="checkbox"] {
@@ -288,8 +288,8 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #8B0000;
-  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+  border-color: #5e35b1;
+  box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.1);
 }
 
 .form-group input.invalid {
@@ -348,7 +348,7 @@
 
 .btn-copy-submission {
   padding: 1rem 2rem;
-  background: #8B0000;
+  background: #5e35b1;
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -398,8 +398,8 @@
 
 .btn-back:hover {
   background: #F7F6F3;
-  border-color: #8B0000;
-  color: #8B0000;
+  border-color: #5e35b1;
+  color: #5e35b1;
 }
 
 /* Responsive */

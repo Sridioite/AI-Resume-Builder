@@ -31,10 +31,10 @@
 }
 
 .nav-link:hover {
-  color: #8B0000;
+  color: #5e35b1;
 }
 
 .nav-link.active {
-  color: #8B0000;
-  border-bottom-color: #8B0000;
+  color: #5e35b1;
+  border-bottom-color: #5e35b1;
 }

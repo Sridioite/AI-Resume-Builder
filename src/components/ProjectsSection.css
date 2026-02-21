@@ -40,7 +40,7 @@
 .btn-expand {
   background: none;
   border: none;
-  color: #8B0000;
+  color: #5e35b1;
   font-size: 0.875rem;
   cursor: pointer;
   padding: 0.25rem;
@@ -68,8 +68,8 @@
 .project-content input:focus,
 .project-content textarea:focus {
   outline: none;
-  border-color: #8B0000;
-  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+  border-color: #5e35b1;
+  box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.1);
 }
 
 .project-content textarea {

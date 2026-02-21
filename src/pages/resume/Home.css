@@ -34,7 +34,7 @@
 
 .home-cta {
   padding: 1.25rem 3rem;
-  background: #8B0000;
+  background: #5e35b1;
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -45,9 +45,9 @@
 }
 
 .home-cta:hover {
-  background: #a00000;
+  background: #512da8;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(94, 53, 177, 0.3);
 }
 
 @media (max-width: 768px) {

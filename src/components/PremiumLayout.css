@@ -137,13 +137,13 @@
 
 .lovable-textarea:focus {
   outline: none;
-  border-color: #8B0000;
+  border-color: #5e35b1;
 }
 
 .btn-copy {
   width: 100%;
   padding: 0.875rem;
-  background: #8B0000;
+  background: #5e35b1;
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -199,7 +199,7 @@
 
 .artifact-upload input[type="file"]:focus {
   outline: none;
-  border-color: #8B0000;
+  border-color: #5e35b1;
 }
 
 .btn-upload {
@@ -270,7 +270,7 @@
 }
 
 .btn-primary {
-  background: #8B0000;
+  background: #5e35b1;
   color: #ffffff;
 }
 
@@ -289,8 +289,8 @@
 
 .btn-secondary {
   background: transparent;
-  color: #8B0000;
-  border: 1px solid #8B0000;
+  color: #5e35b1;
+  border: 1px solid #5e35b1;
 }
 
 .btn-secondary:hover {

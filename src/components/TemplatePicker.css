@@ -42,7 +42,7 @@
 }
 
 .template-thumbnail:hover {
-  border-color: #8B0000;
+  border-color: #5e35b1;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
